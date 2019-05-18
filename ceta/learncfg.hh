@@ -72,7 +72,7 @@ namespace cfg {
     /** Defines < to be a strict total order over subsets. */
     bool operator<(const eq_subset_t<Nonterminal>& rhs) const {
       return (primary_ <  rhs.primary_)
-          || (primary_ == rhs.primary_) && (secondary_ < rhs.secondary_);
+          || ((primary_ == rhs.primary_) && (secondary_ < rhs.secondary_));
     }
   private:
     /** Map from nonterminal to secondary nodes for nonterminal. */

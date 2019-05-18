@@ -211,7 +211,6 @@ namespace ceta {
 
   inline
   std::ostream& operator<<(std::ostream& o, const closure_t& c) {
-    typedef std::set<state_t>::const_iterator set_iter;
 
     {
       o << "Equivalence classes: " << std::endl;

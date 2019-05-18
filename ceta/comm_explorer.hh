@@ -93,8 +93,8 @@ namespace ceta {
                        const std::set<state_t>& y) {
       const state_t& lhs0 = lhs_state(rule, 0);
       const state_t& lhs1 = lhs_state(rule, 1);
-      return (x.count(lhs0) > 0) && (y.count(lhs1) > 0)
-          || (x.count(lhs1) > 0) && (y.count(lhs0) > 0);
+      return ((x.count(lhs0) > 0) && (y.count(lhs1) > 0))
+          || ((x.count(lhs1) > 0) && (y.count(lhs0) > 0));
     }
 
     /** Theory for exploer. */

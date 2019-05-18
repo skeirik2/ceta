@@ -54,8 +54,8 @@ namespace cfg {
   bool operator<(const cfg_rule_t<Nonterminal>& x,
                  const cfg_rule_t<Nonterminal>& y) {
     return (x.lhs  < y.lhs)
-        || (x.lhs == y.lhs) && (x.first  < y.first)
-        || (x.lhs == y.lhs) && (x.first == y.first) && (x.second < y.second);
+        || ((x.lhs == y.lhs) && (x.first  < y.first))
+        || ((x.lhs == y.lhs) && (x.first == y.first) && (x.second < y.second));
   }
   /** Write rule to ostream. */
   template<typename Nonterminal>
@@ -236,7 +236,7 @@ namespace cfg {
   bool operator<(const prefix_pair_t<Nonterminal>& x,
                  const prefix_pair_t<Nonterminal>& y) {
     return (x.set < y.set)
-        || (x.set == y.set) && (x.nt < y.nt);
+        || (x.set == y.set && x.nt < y.nt);
   }
 
   /** Writes prefix pair to stream for debugging purposes. */

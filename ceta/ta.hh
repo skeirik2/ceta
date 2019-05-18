@@ -1216,7 +1216,7 @@ namespace ceta {
   inline
   bool operator<(const erule_t& x, const erule_t& y) {
     return (lhs(x) <  lhs(y))
-        || (lhs(x) == lhs(y)) && (rhs(x) < rhs(y));
+        || (lhs(x) == lhs(y) && rhs(x) < rhs(y));
   }
 
   /**\internal
@@ -1331,9 +1331,9 @@ namespace ceta {
   inline
   bool operator<(const rule_t& x, const rule_t& y) {
     return (op(x)  < op(y))
-        || (op(x) == op(y)) && (rhs(x)  < rhs(y))
-        || (op(x) == op(y)) && (rhs(x) == rhs(y))
-                            && (x.lhs_states_ < y.lhs_states_);
+        || (op(x) == op(y) && rhs(x)  < rhs(y))
+        || (op(x) == op(y) && rhs(x) == rhs(y)
+                           && x.lhs_states_ < y.lhs_states_);
   }
   /**
    * Returns the state with index i on the left-hand-side of the rule.
