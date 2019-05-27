@@ -410,7 +410,8 @@ namespace cfg {
           const tree_vector_t& c = trees_.constants(cur_nt, *ib);
           for (tree_iter i = c.begin(); i != c.end(); ++i) {
             std::vector<size_t> leafc = i->leaf_counts(terminal_count_);
-            group.insert_constant(&leafc[0]);
+            assert(leafc[0] <= INT_MAX);
+            group.insert_constant((const unsigned int*)&leafc[0]);
           }
           // Add periods for each nonterminal in branch set.
           typedef typename std::set<Nonterminal>::const_iterator nt_iter;
@@ -419,7 +420,8 @@ namespace cfg {
             const tree_vector_t& p = trees_.periods(*ip);
             for (tree_iter i = p.begin(); i != p.end(); ++i) {
               std::vector<size_t> leafc = i->leaf_counts(terminal_count_);
-              group.insert_period(&leafc[0]);
+              assert(leafc[0] <= INT_MAX);
+              group.insert_constant((const unsigned int*)&leafc[0]);
             }
           }
           // Add group to semilinear set.
@@ -543,12 +545,9 @@ namespace cfg {
   std::map<Nonterminal, semilinear_set>
   parikh_image(size_t terminal_count, const cfg_t<size_t, Nonterminal>& g) {
 
-    typedef typename cfg_t<size_t,Nonterminal>::nonterminal_iterator nt_iter;
     typedef typename cfg_t<size_t,Nonterminal>::trule_iterator trule_iter;
     typedef typename cfg_t<size_t,Nonterminal>::urule_iterator urule_iter;
     typedef typename cfg_t<size_t,Nonterminal>::rrule_iterator rrule_iter;
-    typedef std::vector<parikh_tree_t<Nonterminal> > tree_vector_t;
-    typedef typename tree_vector_t::const_iterator tree_iter;
 
     // Maps each nonterminal to the nonterminals that it can reach via
     // epsilon transitions.
