@@ -858,11 +858,11 @@ namespace ceta {
 
   bool operator==(const theory_t& lhs, const theory_t& rhs) {
     return (lhs.impl_ == rhs.impl_)
-        || equal(kinds_begin(lhs), kinds_end(lhs),
+        || (ceta::impl::equal(kinds_begin(lhs), kinds_end(lhs),
                  kinds_begin(rhs), kinds_end(rhs))
-        && equal(ops_begin(lhs), ops_end(lhs),
+        &&  ceta::impl::equal(ops_begin(lhs), ops_end(lhs),
                  ops_begin(rhs), ops_end(rhs),
-                 ops_equivalent(lhs, rhs));
+                 ops_equivalent(lhs, rhs)));
   }
 
   bool models(const state_predicate_t& pred, const set<state_t>& model) {
