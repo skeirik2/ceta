@@ -797,15 +797,15 @@ namespace impl {
 
   template<class M>
   static
-  int kmult(size_t n, M m) {
+  unsigned int kmult(size_t n, M m) {
     LU<rational> lumain(n, n, m);
 
-    long long num(std::abs(lumain.det().numerator()));
-    long long div(num);
+    unsigned long long num(std::abs(lumain.det().numerator()));
+    unsigned long long div(num);
 
     for (size_t ir(0); ir != n; ++ir) {
       for (size_t ic(0); ic != n; ++ic) {
-        long long r(std::abs(
+        unsigned long long r(std::abs(
           LU<rational>(n-1, n-1,
             minor_matrix<M>(m, ir, ic)).det().numerator()));
         div = boost::gcd(div, r);
@@ -1013,7 +1013,7 @@ namespace impl {
     }
 
     // Compute k(periods)
-    long long k(kmult(dim, pos_period_matrix));
+    unsigned int k(kmult(dim, pos_period_matrix));
 
     // Initialize first n columns of elements to be k * identity matrix
     fill_identity_matrix(dim,
