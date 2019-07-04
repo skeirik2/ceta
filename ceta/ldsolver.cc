@@ -436,7 +436,7 @@ namespace ceta {
     const size_t nr_;
     const size_t nc_;
     const vector<int> coefs_;
-    auto_ptr<MpzSystem> system_;
+    unique_ptr<MpzSystem> system_;
     bool homo_;
   };
 #else
