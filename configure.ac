@@ -61,7 +61,7 @@ if (test "$DEBUGGING" = no) then
   AC_MSG_CHECKING(for GCC class visibility attribute)
   CXXFLAGS_save="$CXXFLAGS"
   CXXFLAGS="$CXXFLAGS -Werror -fvisibility=internal"
-  AC_COMPILE_IFELSE([
+  AC_COMPILE_IFELSE([AC_LANG_SOURCE([
   class __attribute__ ((visibility ("hidden"))) c_hidden {
   };
 
@@ -71,7 +71,7 @@ if (test "$DEBUGGING" = no) then
   int main (int argc, char **argv) {
     return 0;
   }
-  ],have_gcc_class_visibility=yes,have_gcc_class_visibility=no)
+  ])],have_gcc_class_visibility=yes,have_gcc_class_visibility=no)
   CXXFLAGS="$CXXFLAGS_save"
   AC_MSG_RESULT($have_gcc_class_visibility)
   if test "$have_gcc_class_visibility" = yes; then
